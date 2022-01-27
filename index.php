@@ -17,23 +17,23 @@
             $fichier = file("mots.txt");
             $alphabet = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 
-            require('Pendu.php');
+            require('pendu.php');
             $pendu = new Pendu;
-            $pendu->choixMot($fichier);
+            $pendu->choisirMot($fichier);
             $prevmot = strtoupper($_SESSION['mot']);
             $mot = $pendu->retirerAccents($prevmot);
             
             $_SESSION['false'] = 0; 
             $_SESSION['true'] = 0;
 
-            if(!isset($_SESSION['victoires'])){
-                $_SESSION['victoires'] = 0;
+            if(!isset($_SESSION['victoire'])){
+                $_SESSION['victoire'] = 0;
             }
 
             if(!empty($_GET) && $_GET['etat']=='jouer')
             {    
                 if (isset($_POST["lettre"])) {
-                $pendu->stockagedesLettres();
+                $pendu->stockageLettres();
                 }
                 
                 if(!empty($_SESSION['played'])){
@@ -50,27 +50,27 @@
                         echo "<div class='dessin'>";
                             $false = $_SESSION['false']; 
                             if($false !=0){
-                                echo "<img src='./assets/Le-Pendu ($false).png'>";
+                                echo "<img src='./img/perdu($false).jpg'>";
                             }
                         echo "</div>";
                     echo "</div>";
                 echo "</div>";
                 if($_SESSION['true']== strlen($mot)){
-                    header("location:./index.php?etat=gagne");
+                    header("location:index.php?etat=gagne");
                 }
                 if($_SESSION['false'] >= 8 ){
-                    header("location:./index.php?etat=perdu");
+                    header("location:index.php?etat=perdu");
                 }
                 
-                echo "<p class='victoires'> nombre de victoires : $_SESSION[victoires]</p>";
-                echo "<a class='recommencer' href='./Recommencer.php'>Nouveau Mot</a>";
+                echo "<p class='victoire'> nombre de victoires : $_SESSION[victoires]</p>";
+                echo "<a class='rejouer' href='./rejouer.php'>Nouveau Mot</a>";
             }
             elseif(!empty($_GET) && $_GET['etat']=='perdu'){
                 $pendu->partiePerdue($mot);
             }
 
             elseif(!empty($_GET) && $_GET['etat']=='gagne'){
-                $pendu->partieGagne($mot);
+                $pendu->partieGagner($mot);
             }
 
             else{
