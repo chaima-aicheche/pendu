@@ -6,3 +6,4 @@ escargot
 labyrinthe
 devorer
 Sheeeeesh
+badr

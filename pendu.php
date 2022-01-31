@@ -15,14 +15,19 @@ class Pendu{
 
     public function partiePerdue($mot)
     {
-        echo "<div class='msg'> Perdu ... Le mot était <br><span class='mot'> $mot </span> </div><a class='recommencer' href='./rejouer.php'>Rejouer</a>";
+        echo "<div class='msg' style='color:blue'> Perdu ... Le mot était <br><span class='mot'> $mot </span> </div><div class='d-grid gap-2 col-6 mx-auto'>
+        <a href='./rejouer.php'> <button class='btn btn-dark' type='button'>Rejouer</button></a>
+        </div>";
         echo "<img src='./img/Pendu8.JPG'>";
         exit();
     }
 
     public function partieGagner($mot)
     {
-        echo "<div class='msg'> Gagné ... le mot était bien <br> $mot </div><a class='rejouer' href='./rejouer.php'>Nouveau Mot</a>";
+        echo "<div class='msg' style='color:blue'> Gagné ... le mot était bien <br> $mot </div><div class='d-grid gap-2 col-6 mx-auto'>
+        <a href='./rejouer.php'> <button class='btn btn-dark' type='button'>Nouveau mot</button></a>
+        </div>";
+        echo "<img src='./img/GG.JPG' style='width:70%'>";
         $_SESSION['victoire']++;
         echo "$_SESSION[victoire]";
         exit();
@@ -74,26 +79,24 @@ class Pendu{
         for ($j=0; isset($mot[$j]); $j++) {
             if(!empty($this->played) && in_array($mot[$j], $this->played)){
                 $_SESSION['true']++;
-                echo "$mot[$j]";
+                echo "<span class='tiret' style='color:blue'>".$mot[$j]."</span>";
             }
             else{
-                echo "<span class='tiret'>_ </span>";
+                echo "<span class='tiret' style='color:blue'>_ </span>";
             }      
         }
     }
 
     public function Accueil(){
-        if(!empty($_SESSION['victoire'])){
-            echo "<p class='bienvenue'> Bienvenue sur le jeu du Pendu Faites une partie :</p>";
-
-            echo "<img src='./img/fond.jpg'>";
-            echo "<a class='continuer' href='./index.php?etat=jouer'>Continuer</a>";  
-            echo "<a class='nouvelleP' href='./newpartie.php'>Nouvelle partie</a>";  
+        if(!empty($_SESSION['victoire'])){;  
+            echo "<div class='d-grid gap-2 col-6 mx-auto'style='z-index:99;'>
+                    <a href='./index.php?etat=jouer'><button class='btn btn-primary' type='button'>Continuez</button></a>
+                  </div>";
         }
         else{
-            echo "<p class='bienvenue'> Bienvenue! Faites une partie :</p>";
-            echo "<img class='fond' src='./img/fond.jpg'>";
-            echo "<a class='nouvelleP' href='./newpartie.php'>Nouvelle partie</a>";  
+            echo "<div class='d-grid gap-2 col-6 mx-auto' style='z-index:99;'>
+                    <a href='./newpartie.php'> <button class='btn btn-primary' type='button'>Lancer une partie</button></a>
+                 </div>";
         }
     }
 

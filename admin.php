@@ -12,14 +12,19 @@
         ?>
     </header>
     <main>
+    
         <form method="post">
-            <input name="mot" id="Ajoutmot" type="text" placeholder="mot à ajouter" />
+        <div class="input-group input-group-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg" name="mot" id="Ajoutmot" type="text" placeholder="mot à ajouter" >Mot à ajouter</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        </div>   
         </form>
         <div class="mots">
+        <ul class="list-group">
             <?php
             $lines = file("mots.txt");
             foreach($lines as $word){
-                echo $word ."<br>";
+                echo "<a href='#' class='list-group-item list-group-item-action list-group-item-dark'>".$word."</a> </br>";
             }
             if(isset($_POST['mot'])){
                 if(ctype_alpha($_POST['mot'])){
@@ -32,6 +37,7 @@
                 }
             }
             ?>
+        </ul>
         </div>
     </main>
 </body>
