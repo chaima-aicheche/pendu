@@ -1,9 +1,7 @@
-salut
-jelly
-chat
+test
+arbre
 ajouter
-escargot
-labyrinthe
-devorer
-Sheeeeesh
-badr
+mot
+algorithm
+programation
+forme
